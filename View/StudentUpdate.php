@@ -3,6 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <title>DANH SÁCH SINH VIÊN</title>
+        <style>
+         a {
+            color: #0000ff; /* Màu mặc định của link */
+            text-decoration: none;
+        }
+        a:visited{
+            color: #0000ff;
+            text-decoration: none;
+        }
+        </style>
     </head>
     <body>
         <h1 style="text-align: center;">DANH SÁCH SINH VIÊN</h1>
@@ -33,6 +43,6 @@
             </tr>
             <?php endforeach; ?>
         </table>
-        <a href="index.php?">Quay lại trang chủ</a>
+        <a href="index.php?action=home">Quay lại trang chủ</a>
     </body>
 </html>

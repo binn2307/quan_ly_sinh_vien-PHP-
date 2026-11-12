@@ -4,6 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>DANH SÁCH SINH VIÊN</title>
+    <style>
+        a {
+            color: #0000ff; /* Màu mặc định của link */
+            text-decoration: none;
+        }
+        a:visited{
+            color: #0000ff;
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body>

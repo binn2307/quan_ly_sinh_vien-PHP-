@@ -73,21 +73,43 @@ class C_Student
         }
     }
 
-    public function updateSV() {
-        if(isset($_GET['stid'])){
+    public function updateSV()
+    {
+        if (isset($_GET['stid'])) {
 
             //Kiểm tra  2 trường hợp : GET HAY POST
-            if()
-            $id = $_GET['stid'];
-            $sv = $this->svBO->getSvBYID((int)$id);
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $id = (int)$_GET['stid'];
+                $name = $_POST['name'];
+                $age = $_POST['age'];
+                $university = $_POST['university'];
 
-            if($sv === false){
-                echo "Ko tìm thấy sinh viên!";
-                require_once __DIR__ . '/../View/StudentUpdate.php';
+                $sv = new sinhvien($id, $name, $age, $university);
+
+                if($this->svBO->updateSV($sv)){
+                    echo 'Đã cập nhập sinh viên <br>';
+                    echo '<a href="index.php?action=update">Quay lai</a>';
+                }else{
+                    echo 'Lỗi cập nhập ko thành công <br>';
+                    echo '<a href="index.php?action=update">Quay lai</a>';
+                }
+            } 
+            //GET thì hiện form update
+            else {
+                $id = $_GET['stid'];
+                $sv = $this->svBO->getSvBYID((int)$id);
+
+                //kiểm tra sv có tồn tại ko
+                if ($sv === false) {
+                    echo "Ko tìm thấy sinh viên!";
+                    echo '<br>';
+                    echo '<a href="index.php?action=update">Quay lai</a>';
+                    return;
+                }
+
+                require_once __DIR__ . '/../View/StudentUpdate_view.php';
             }
-
-            require_once __DIR__ . '/../View/StudentUpdate_view.php';
-        }else{
+        } else {
             $list = $this->svBO->getALLSV();
             require_once __DIR__ . '/../View/StudentUpdate.php';
         }
