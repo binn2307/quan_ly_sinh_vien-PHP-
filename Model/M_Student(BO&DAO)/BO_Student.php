@@ -23,6 +23,14 @@ class sinhvienBO{
         return $this->svDAO->getSVBYID($id);
     }
 
+    //Lấy sinh viên theo name
+    public function getSVBYNAME(string $name){
+        if(trim($name) ===""){
+            return false;
+        }
+        return $this->svDAO->getSVBYNAME($name);
+    }
+
     //Thêm sinh viên
     public function insertSV(sinhvien $sv){
         //nếu tên trống

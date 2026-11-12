@@ -115,7 +115,19 @@ class C_Student
         }
     }
 
-    public function searchSV() {}
+    public function searchSV() {
+        if(isset($_GET['name'])){
+            $name = $_GET['name'];
+            if(empty(trim($name))){
+                echo 'Lỗi phải nhập nhập name';
+                return;
+            }
+            $sv = $this->svBO->getSVBYNAME($name);
+            require_once __DIR__ . '/../View/StudentSearchResult.php';
+        }else{
+            require_once __DIR__ . '/../View/StudentSearch.php';
+        }
+    }
 
     public  function deleteSV()
     {

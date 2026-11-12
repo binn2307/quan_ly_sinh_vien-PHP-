@@ -75,5 +75,15 @@ class sinhvienDAO{
         ]);
         return $stmt->rowCount() > 0;
     }
+
+    public function getSVBYNAME(string $name){
+        $sql = "SELECT * FROM sinhvien WHERE name LIKE  :name";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            ':name' => "%$name%"
+        ]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>
